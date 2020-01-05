@@ -1,5 +1,6 @@
 package com.example.youtubeparcer.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,16 +51,17 @@ class PlaylistAdapter(val function: (ItemsItem) -> Unit) :
 
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: ItemsItem) {
             Picasso
                 .get()
-                .load(item.snippet?.thumbnails?.default?.url)
+                .load(item.snippet.thumbnails.default.url)
                 .fit()
                 .centerCrop()
                 .into(image)
 
             title?.text = item.snippet.title
-            description?.text = item.contentDetails?.itemCount + " видео"
+            description?.text = item.contentDetails.itemCount + " видео"
             itemView.setOnClickListener {
                 function(item)
             }

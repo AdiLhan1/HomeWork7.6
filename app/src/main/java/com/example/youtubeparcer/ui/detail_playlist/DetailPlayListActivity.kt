@@ -27,12 +27,10 @@ class DetailPlayListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_play_list)
         viewModel = ViewModelProviders.of(this).get(DetailPlaylistViewModel::class.java)
-
         initAdapter()
         getIntentData()
         subscribeToViewModel()
     }
-
     private fun getIntentData() {
         id = intent?.getStringExtra("id")
         title = intent?.getStringExtra("title")
@@ -63,9 +61,7 @@ class DetailPlayListActivity : AppCompatActivity() {
                 updateViews(data.value!!)
             }
         })
-
     }
-
     private fun updateViews(it: DetailPlaylistModel) {
         adapter.updateData(it.items)
     }

@@ -49,25 +49,27 @@ class MainRepository {
             val data = MutableLiveData<DetailPlaylistModel>()
             apiService.getDetailPlaylist(part, apiKey, playlistId, maxResult).enqueue(object :
                 Callback<DetailPlaylistModel> {
-                override fun onResponse(call: Call<DetailPlaylistModel>, response: Response<DetailPlaylistModel>) {
+                override fun onResponse(
+                    call: Call<DetailPlaylistModel>,
+                    response: Response<DetailPlaylistModel>
+                ) {
                     data.value = response.body()
                 }
+
                 override fun onFailure(call: Call<DetailPlaylistModel>, t: Throwable) {
                     Log.v("response_fail", t.message)
                     data.value = null
                 }
-
-
-
             })
             return data
 
         }
+
         fun fetchVideoData(videoId: String): LiveData<DetailVideoModel>? {
             apiService = RetrofitClient.create()
             val data = MutableLiveData<DetailVideoModel>()
-            apiService.getDetailVideo(apiKey, part,videoId).enqueue(object :
-            Callback<DetailVideoModel>{
+            apiService.getDetailVideo(apiKey, part, videoId).enqueue(object :
+                Callback<DetailVideoModel> {
                 override fun onFailure(call: Call<DetailVideoModel>, t: Throwable) {
                     data.value = null
                 }
@@ -83,8 +85,6 @@ class MainRepository {
             return data
 
         }
-
-
 
 
     }

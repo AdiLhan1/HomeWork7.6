@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         initAdapter()
         fetchPlaylist()
-
-
     }
 
     private fun initAdapter() {
